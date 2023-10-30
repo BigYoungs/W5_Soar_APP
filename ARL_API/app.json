@@ -1,0 +1,303 @@
+{
+  "identification": "w5soar",
+  "is_public": false,
+  "name": "ARL API调用",
+  "version": "0.1",
+  "description": "调用ARL的API接口，发起相关操作",
+  "type": "基础应用",
+  "action": [
+    {
+      "name": "任务查询",
+      "func": "task_query"
+    },
+    {
+      "name": "任务提交",
+      "func": "task_start"
+    },
+    {
+      "name": "任务结果同步到资产组",
+      "func": "task_sync"
+    },
+    {
+      "name": "更新POC信息",
+      "func": "poc_sync"
+    }
+  ],
+  "args": {
+    "task_query": [
+      {
+        "key": "host",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "token",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "task_id",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "task_start": [
+      {
+        "key": "host",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "token",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "task_name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "target",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "domain_brute",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "domain_brute_type",
+        "type": "select",
+        "default": "test",
+        "data": [
+          "test",
+          "big"
+        ],
+        "required": false
+      },
+      {
+        "key": "port_scan",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "port_scan_type",
+        "type": "select",
+        "default": "test",
+        "data": [
+          "test",
+          "top100",
+          "top1000",
+          "all"
+        ],
+        "required": false
+      },
+      {
+        "key": "service_detection",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "service_brute",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "os_detection",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "site_identify",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "site_capture",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "file_leak",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "search_engines",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "site_spider",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "arl_search",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "alt_dns",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "ssl_cert",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "dns_query_plugin",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "skip_scan_cdn_ip",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "nuclei_scan",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "findvhost",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "web_info_hunter",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      }
+    ],
+    "task_sync": [
+      {
+        "key": "host",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "token",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "task_id",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "scope_id",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "poc_sync": [
+      {
+        "key": "host",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "token",
+        "type": "text",
+        "required": true
+      }
+    ]
+  }
+}

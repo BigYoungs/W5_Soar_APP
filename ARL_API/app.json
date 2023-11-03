@@ -21,6 +21,10 @@
     {
       "name": "更新POC信息",
       "func": "poc_sync"
+    },
+    {
+      "name": "WEB Info Hunter 信息查询",
+      "func": "get_wih"
     }
   ],
   "args": {
@@ -36,9 +40,231 @@
         "required": true
       },
       {
-        "key": "task_id",
+        "key": "name",
         "type": "text",
-        "required": true
+        "required": false
+      },
+      {
+        "key": "target",
+        "type": "text",
+        "required": false
+      },
+      {
+        "key": "_id",
+        "type": "text",
+        "required": false
+      },
+      {
+        "key": "status",
+        "type": "text",
+        "required": false
+      },
+      {
+        "key": "task_tag",
+        "type": "text",
+        "required": false
+      },
+      {
+        "key": "domain_brute",
+        "type": "select",
+        "data": [
+          "True",
+          "False"
+        ]
+      },
+      {
+        "key": "domain_brute_type",
+        "type": "select",
+        "default": "test",
+        "data": [
+          "test",
+          "big"
+        ],
+        "required": false
+      },
+      {
+        "key": "port_scan",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "port_scan_type",
+        "type": "select",
+        "default": "test",
+        "data": [
+          "test",
+          "top100",
+          "top1000",
+          "all"
+        ],
+        "required": false
+      },
+      {
+        "key": "service_detection",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "service_brute",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "os_detection",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "site_identify",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "file_leak",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "search_engines",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "site_spider",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "arl_search",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "alt_dns",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "dns_query_plugin",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "skip_scan_cdn_ip",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "nuclei_scan",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "findvhost",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "web_info_hunter",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
+      },
+      {
+        "key": "page",
+        "type": "text",
+        "default": "1",
+        "required": false
+      },
+      {
+        "key": "size",
+        "type": "text",
+        "default": "10",
+        "required": false
+      },
+      {
+        "key": "all",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
       }
     ],
     "task_start": [
@@ -297,6 +523,75 @@
         "key": "token",
         "type": "text",
         "required": true
+      }
+    ],
+    "get_wih": [
+      {
+        "key": "host",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "token",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "record_type",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "record_type__neq",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "record_type__not",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "content",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "source",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "site",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "task_id",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "page",
+        "type": "text",
+        "default": "1",
+        "required": false
+      },
+      {
+        "key": "size",
+        "type": "text",
+        "default": "10",
+        "required": false
+      },
+      {
+        "key": "all",
+        "type": "select",
+        "default": "False",
+        "data": [
+          "True",
+          "False"
+        ],
+        "required": false
       }
     ]
   }

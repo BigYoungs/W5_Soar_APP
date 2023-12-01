@@ -1,14 +1,18 @@
 {
   "identification": "w5soar",
   "is_public": false,
-  "name": "创建AWVS扫描",
-  "version": "0.1",
-  "description": "通过调用AWVS接口，实现发起批量扫描任务以及相关功能",
+  "name": "AWVS接口功能",
+  "version": "0.2",
+  "description": "通过调用AWVS接口，实现发起批量扫描任务、新增漏洞通知以及相关功能",
   "type": "安全扫描",
   "action": [
     {
       "name": "批量发起扫描",
       "func": "scan_main"
+    },
+    {
+      "name": "新增漏洞通知",
+      "func": "get_vul"
     }
   ],
   "args": {
@@ -53,6 +57,23 @@
         "type": "text",
         "required": true,
         "default": "AVWS API发起"
+      }
+    ],
+    "get_vul": [
+      {
+        "key": "api_key",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "awvs_url",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "vul_level",
+        "type": "text",
+        "required": true
       }
     ]
   }

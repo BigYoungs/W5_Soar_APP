@@ -6,11 +6,67 @@
 # 免责声明：禁止用于非法用途，一切违法行为与作者无关。
 
 import json
+import os
 import sys
 
 # 导入日记库，没有请先安装 pip install loguru
 import requests
 from loguru import logger
+
+
+# 定时获取AWVS漏洞
+async def get_vul(awvs_url, api_key, vul_level="3,2,1,0"):
+    """
+    获取AWVS漏洞
+    :param awvs_url: awvs的接口地址
+    :param api_key:  awvs的认证token
+    :param target_id:  awvs的目标id
+    :return:
+    """
+    try:
+        import requests, datetime, json, time
+    except Exception as e:
+        logger.error(f"[{sys._getframe().f_code.co_name}]该APP导入包失败，请先pip install 相关包，报错信息：{e}")
+
+    headers = {'Content-Type': 'application/json; charset=utf8', "X-Auth": api_key}
+    get_target_url = f'{awvs_url}/api/v1/vulnerability_types?l=100&q=status:open;severity:{vul_level};'
+    result = {
+        "new_vul_count": 0,
+    }
+    try:
+        # 判断count.txt文件是否存在
+        if os.path.exists('count.txt'):  # 文件存在
+            # 如果存在，读取count.txt文件的值
+            with open('count.txt', 'r') as f:
+                last_vul_count = int(f.read())
+            result['last_vul_count'] = last_vul_count
+
+            response = requests.get(get_target_url, headers=headers, timeout=30, verify=False).json()
+            high_count = 0
+            for xxxx in response['vulnerability_types']:
+                high_count = high_count + xxxx['count']
+
+            if high_count != last_vul_count:
+                result['new_vul_count'] = high_count - last_vul_count
+
+                # 把high_count的值写入count.txt文件，用于下次对比
+                with open('count.txt', 'w') as f:
+                    f.write(str(high_count))
+        else:  # 文件不存在
+            response = requests.get(get_target_url, headers=headers, timeout=30, verify=False).json()
+            init_high_count = 0
+            for xxxx in response['vulnerability_types']:
+                init_high_count = init_high_count + xxxx['count']
+            # 把init_high_count的值写入count.txt文件，用于下次对比
+            with open('count.txt', 'w') as f:
+                f.write(str(init_high_count))
+            result['new_vul_count'] = init_high_count
+            result['last_vul_count'] = 0
+
+        return {"status": 1, "result": result}
+    except Exception as e:
+        logger.error(f"AWVS获取漏洞数异常，报错信息：{e}")
+        return {"status": 2, "result": {}}
 
 
 def addTask(url, target, headers, scan_label):

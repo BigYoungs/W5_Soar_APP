@@ -14,17 +14,17 @@ https://w5.io/help/dev/dev6.html
 
 # 已实现APP
 
-## ARL_API
+## [ARL_API](./ARL_API)
 
 通过ARL的接口，发起ARL的任务，具体功能，查看：ARL_API/readme.md
 
-## AWVS
+## [AWVS](./AWVS)
 
 通过AWVS接口，发起扫描任务，具体功能，查看：AWVS/readme.md
 
 此APP参考文档：https://github.com/0xmin/awvs-scan
 
-## IPQuery
+## [IPQuery](./IPQuery)
 
 IP相关的功能，已实现如下功能，具体功能，查看：IPQuery/readme.md
 
@@ -32,6 +32,41 @@ IP相关的功能，已实现如下功能，具体功能，查看：IPQuery/read
 2. 旁站查询
 3. 查询ip地理位置
 
+# 版本记录
+
+> 每个app的版本记录，可以在app目录下的readme.md中查看。这里记录整体的版本记录。
+
+## V0.1.2 AWVS 查询新增漏洞数
+
+**使用场景：**
+
+配合定时器使用，可以实现定时推送awvs发现的漏洞。
+
+## V0.1.1 增加ARL_API接口功能
+
+**新增功能：**
+
+ARL_API增加查询WIH信息接口功能，详情查看：ARL_API/readme.md
+
+**修复内容：** 
+
+修复ARL_API的任务查询接口功能
+
+**优化内容：**
+
+优化ARL_API的接口实现
+
+## V0.1.0 发布三个app
+
+每个app的用法，可以在app目录下的readme.md中查看。
+
+1. ARL_API
+ 
+3. AWVS
+
+4. IPQuery
+
+ 
 # 致谢
 
 感谢Github上的各种开源项目，帮我节省了不少时间。
